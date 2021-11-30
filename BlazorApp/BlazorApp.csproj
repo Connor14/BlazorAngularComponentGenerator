@@ -1,21 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BlazorAngularComponentGenerator\BlazorAngularComponentGenerator.csproj" />
-  </ItemGroup>
-  
-  <!-- Add -->
-  <Import Project="..\BlazorAngularComponentGenerator.Build\build\netstandard2.0\BlazorAngularComponentGenerator.Build.targets" />
+	<ItemGroup>
+		<ProjectReference Include="..\BlazorAngularComponentGenerator\BlazorAngularComponentGenerator.csproj" />
+	</ItemGroup>
 
+	<!-- Import the build target that will generate the Angular components -->
+	<Import Project="..\BlazorAngularComponentGenerator.Build\build\netstandard2.0\BlazorAngularComponentGenerator.Build.targets" />
+
+	<!-- Copy the generated Angular components to the Angular project -->
+	<ItemGroup>
+		<JavaScriptComponents Include="$(OutputPath)/js/**/*.*"/>
+	</ItemGroup>
+
+	<Target Name="CopyJavaScriptComponents"
+			AfterTargets="AfterBuild">
+		<Copy
+			SourceFiles="@(JavaScriptComponents)"
+			DestinationFiles="@(JavaScriptComponents->'../angular-app-with-blazor/src/app/components/%(RecursiveDir)%(Filename)%(Extension)')" />
+	</Target>
 </Project>
