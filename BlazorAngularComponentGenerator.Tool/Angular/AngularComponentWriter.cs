@@ -1,5 +1,5 @@
 ﻿using BlazorAngularComponentGenerator.Build.Common;
-using BlazorAngularComponentGenerator.Build.Utilities;
+using BlazorAngularComponentGenerator.Shared;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;

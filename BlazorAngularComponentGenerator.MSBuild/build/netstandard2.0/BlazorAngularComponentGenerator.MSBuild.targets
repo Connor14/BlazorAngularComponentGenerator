@@ -1,0 +1,22 @@
+<Project>
+	<Target Name="HackRazorSdk">
+		<ItemGroup>
+			<!-- Add RazorComponent files to the set of files to be code-gened. -->
+			<RazorGenerateWithTargetPath Include="@(RazorComponentWithTargetPath)" />
+		</ItemGroup>
+		<ItemGroup>
+			<RazorReferencePath Include="@(ReferencePath)" />
+			<RazorReferencePath Include="$(TargetPath)" />
+		</ItemGroup>
+	</Target>
+
+	<Target Name="GenerateJavaScriptComponents" AfterTargets="CopyFilesToOutputDirectory" DependsOnTargets="HackRazorSdk;ResolveTagHelperRazorGenerateInputs">
+		<!-- Windows via NuGet -->
+		<Exec Condition="Exists('$(MSBuildThisFileDirectory)..\..\tools\BlazorAngularComponentGenerator_win_x86.exe')"
+			Command="$(MSBuildThisFileDirectory)..\..\tools\BlazorAngularComponentGenerator_win_x86.exe $(OutputPath) $(IntermediateOutputPath) $(AssemblyName) $(OutputPath)/js" />
+
+		<!-- Windows via Visual Studio -->
+		<Exec Condition="Exists('$(MSBuildThisFileDirectory)..\..\..\BlazorAngularComponentGenerator\bin\$(Configuration)\net6.0\tools\win-x86\BlazorAngularComponentGenerator.Tool.exe')"
+			 Command="$(MSBuildThisFileDirectory)..\..\..\BlazorAngularComponentGenerator\bin\$(Configuration)\net6.0\tools\win-x86\BlazorAngularComponentGenerator.Tool.exe $(OutputPath) $(IntermediateOutputPath) $(AssemblyName) $(OutputPath)/js" />
+	</Target>
+</Project>

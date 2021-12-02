@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<OutputType>Exe</OutputType>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="js\blazor-adapter\blazor-adapter.component.ts" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Include="..\BlazorAngularComponentGenerator.Shared\CasingUtilities.cs" Link="Shared\CasingUtilities.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="js\blazor-adapter\blazor-adapter.component.ts" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="System.Reflection.Metadata" Version="6.0.0" />
+		<PackageReference Include="System.Text.Json" Version="6.0.0" />
+	</ItemGroup>
+
+</Project>

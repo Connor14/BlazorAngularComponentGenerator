@@ -1,0 +1,37 @@
+﻿<Project>
+	<Target Name="BulidAndCopyToolExecutables" AfterTargets="Build">
+		<!-- Delete everything to start -->
+		<ItemGroup>
+			<FilesToDelete Include="../BlazorAngularComponentGenerator.Tool/bin/Release/net6.0/publish/**/*.*" />
+		</ItemGroup>
+
+		<Delete Files="@(FilesToDelete)" />
+
+		<!-- Build executables -->
+		<Exec Command="dotnet publish -c Release ../BlazorAngularComponentGenerator.Tool/BlazorAngularComponentGenerator.Tool.csproj -p:PublishProfile=win-x86" />
+		<!--<Exec Command="dotnet publish -c Release ../BlazorAngularComponentGenerator.Tool/BlazorAngularComponentGenerator.Tool.csproj -p:PublishProfile=linux-x64" />-->
+		<!--<Exec Command="dotnet publish -c Release ../BlazorAngularComponentGenerator.Tool/BlazorAngularComponentGenerator.Tool.csproj -p:PublishProfile=osx-x64" />-->
+
+		<!-- Delete PDB files -->
+		<ItemGroup>
+			<PdbFiles Include="../BlazorAngularComponentGenerator.Tool/bin/Release/net6.0/publish/**/*.pdb" />
+		</ItemGroup>
+
+		<Delete Files="@(PdbFiles)" />
+
+		<!-- Copy everything else -->
+		<ItemGroup>
+			<FilesToCopy Include="../BlazorAngularComponentGenerator.Tool/bin/Release/net6.0/publish/**/*.*" />
+		</ItemGroup>
+
+		<Copy SourceFiles="@(FilesToCopy)" DestinationFolder="$(OutputPath)/tools/%(RecursiveDir)" />
+	</Target>
+
+	<Target Name="CopyGeneratorTargets" AfterTargets="Build">
+		<ItemGroup>
+			<TargetFileToCopy Include="../BlazorAngularComponentGenerator.MSBuild/build/netstandard2.0/*.*" />
+		</ItemGroup>
+
+		<Copy SourceFiles="@(TargetFileToCopy)" DestinationFolder="$(OutputPath)/build/netstandard2.0" />
+	</Target>
+</Project>

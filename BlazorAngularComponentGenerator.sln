@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAngularComponentGenerator.Build", "BlazorAngularComponentGenerator.Build\BlazorAngularComponentGenerator.Build.csproj", "{2C92B0FB-4F8C-4A98-A2E7-533784391D6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAngularComponentGenerator.Tool", "BlazorAngularComponentGenerator.Tool\BlazorAngularComponentGenerator.Tool.csproj", "{2C92B0FB-4F8C-4A98-A2E7-533784391D6D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp", "BlazorApp\BlazorApp.csproj", "{2AFB6C5D-EFFB-4388-A313-84956FF0C443}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAngularComponentGenerator", "BlazorAngularComponentGenerator\BlazorAngularComponentGenerator.csproj", "{1C64F11E-D96E-49BB-8C07-707D2E4AECE9}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "angular-app-with-blazor", "angular-app-with-blazor\angular-app-with-blazor.esproj", "{9BA3AB2A-0292-4B71-9B4C-C07EE6C73F73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAngularComponentGenerator.MSBuild", "BlazorAngularComponentGenerator.MSBuild\BlazorAngularComponentGenerator.MSBuild.csproj", "{2229D4CD-26DD-4973-8D56-0D2BCFD27048}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{9BA3AB2A-0292-4B71-9B4C-C07EE6C73F73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BA3AB2A-0292-4B71-9B4C-C07EE6C73F73}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9BA3AB2A-0292-4B71-9B4C-C07EE6C73F73}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2229D4CD-26DD-4973-8D56-0D2BCFD27048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2229D4CD-26DD-4973-8D56-0D2BCFD27048}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2229D4CD-26DD-4973-8D56-0D2BCFD27048}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2229D4CD-26DD-4973-8D56-0D2BCFD27048}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

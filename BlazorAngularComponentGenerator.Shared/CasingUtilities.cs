@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace BlazorAngularComponentGenerator.Build.Utilities
+namespace BlazorAngularComponentGenerator.Shared
 {
     public static class CasingUtilities
     {

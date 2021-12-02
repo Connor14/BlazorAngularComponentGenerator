@@ -16,7 +16,7 @@
 	</ItemGroup>
 
 	<!-- Import the build target that will generate the Angular components -->
-	<Import Project="..\BlazorAngularComponentGenerator.Build\build\netstandard2.0\BlazorAngularComponentGenerator.Build.targets" />
+	<Import Project="..\BlazorAngularComponentGenerator.MSBuild\build\netstandard2.0\BlazorAngularComponentGenerator.MSBuild.targets" />
 
 	<!-- Copy the generated Angular components to the Angular project -->
 	<ItemGroup>
