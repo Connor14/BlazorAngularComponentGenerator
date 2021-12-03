@@ -3,18 +3,19 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<OutputType>Exe</OutputType>
+		<PublishSingleFile>true</PublishSingleFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="js\blazor-adapter\blazor-adapter.component.ts" />
+		<None Remove="js\blazor-adapter\blazor-adapter.component.ts" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Include="..\BlazorAngularComponentGenerator.Shared\CasingUtilities.cs" Link="Shared\CasingUtilities.cs" />
+		<Compile Include="..\BlazorAngularComponentGenerator.Shared\CasingUtilities.cs" Link="Shared\CasingUtilities.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="js\blazor-adapter\blazor-adapter.component.ts" />
+		<EmbeddedResource Include="js\blazor-adapter\blazor-adapter.component.ts" />
 	</ItemGroup>
 
 	<ItemGroup>

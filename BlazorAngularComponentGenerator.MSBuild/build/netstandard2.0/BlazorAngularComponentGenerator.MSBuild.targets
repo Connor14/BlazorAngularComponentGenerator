@@ -10,13 +10,20 @@
 		</ItemGroup>
 	</Target>
 
+	<!-- Execute the generator tool -->
 	<Target Name="GenerateJavaScriptComponents" AfterTargets="CopyFilesToOutputDirectory" DependsOnTargets="HackRazorSdk;ResolveTagHelperRazorGenerateInputs">
-		<!-- Windows via NuGet -->
-		<Exec Condition="Exists('$(MSBuildThisFileDirectory)..\..\tools\BlazorAngularComponentGenerator_win_x86.exe')"
-			Command="$(MSBuildThisFileDirectory)..\..\tools\BlazorAngularComponentGenerator_win_x86.exe $(OutputPath) $(IntermediateOutputPath) $(AssemblyName) $(OutputPath)/js" />
+		<PropertyGroup>
+			<ToolFile Condition="$([MSBuild]::IsOSPlatform('Windows'))">generator_win_x86.exe</ToolFile>
+			<ToolFile Condition="$([MSBuild]::IsOSPlatform('Linux'))">generator_linux_x64</ToolFile>
+			<ToolFile Condition="$([MSBuild]::IsOSPlatform('OSX'))">generator_osx_x64</ToolFile>
 
-		<!-- Windows via Visual Studio -->
-		<Exec Condition="Exists('$(MSBuildThisFileDirectory)..\..\..\BlazorAngularComponentGenerator\bin\$(Configuration)\net6.0\tools\win-x86\BlazorAngularComponentGenerator.Tool.exe')"
-			 Command="$(MSBuildThisFileDirectory)..\..\..\BlazorAngularComponentGenerator\bin\$(Configuration)\net6.0\tools\win-x86\BlazorAngularComponentGenerator.Tool.exe $(OutputPath) $(IntermediateOutputPath) $(AssemblyName) $(OutputPath)/js" />
+			<ToolPath_Dev>$(MSBuildThisFileDirectory)..\..\..\BlazorAngularComponentGenerator\bin\$(Configuration)\net6.0\tools\$(ToolFile)</ToolPath_Dev>
+			<ToolPath_NuGet>$(MSBuildThisFileDirectory)..\..\tools\$(ToolFile)</ToolPath_NuGet>
+
+			<ToolCommand Condition="Exists('$(ToolPath_Dev)')">$(ToolPath_Dev) $(OutputPath) $(IntermediateOutputPath) $(AssemblyName) $(OutputPath)/js</ToolCommand>
+			<ToolCommand Condition="Exists('$(ToolPath_NuGet)')">$(ToolPath_NuGet) $(OutputPath) $(IntermediateOutputPath) $(AssemblyName) $(OutputPath)/js</ToolCommand>
+		</PropertyGroup>
+
+		<Exec Command="$(ToolCommand)" />
 	</Target>
 </Project>

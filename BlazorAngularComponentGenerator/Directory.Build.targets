@@ -1,37 +1,34 @@
 ﻿<Project>
 	<Target Name="BulidAndCopyToolExecutables" AfterTargets="Build">
-		<!-- Delete everything to start -->
-		<ItemGroup>
-			<FilesToDelete Include="../BlazorAngularComponentGenerator.Tool/bin/Release/net6.0/publish/**/*.*" />
-		</ItemGroup>
-
-		<Delete Files="@(FilesToDelete)" />
+		<PropertyGroup>
+			<PublishCommand>dotnet publish -c $(Configuration) --self-contained ../BlazorAngularComponentGenerator.Tool/BlazorAngularComponentGenerator.Tool.csproj</PublishCommand>
+			<File_Win_x86>../BlazorAngularComponentGenerator.Tool/bin/$(Configuration)/net6.0/win-x86/publish/BlazorAngularComponentGenerator.Tool.exe</File_Win_x86>
+			<File_Linux_x64>../BlazorAngularComponentGenerator.Tool/bin/$(Configuration)/net6.0/linux-x64/publish/BlazorAngularComponentGenerator.Tool</File_Linux_x64>
+			<File_OSX_x64>../BlazorAngularComponentGenerator.Tool/bin/$(Configuration)/net6.0/osx-x64/publish/BlazorAngularComponentGenerator.Tool</File_OSX_x64>
+		</PropertyGroup>
 
 		<!-- Build executables -->
-		<Exec Command="dotnet publish -c Release ../BlazorAngularComponentGenerator.Tool/BlazorAngularComponentGenerator.Tool.csproj -p:PublishProfile=win-x86" />
-		<!--<Exec Command="dotnet publish -c Release ../BlazorAngularComponentGenerator.Tool/BlazorAngularComponentGenerator.Tool.csproj -p:PublishProfile=linux-x64" />-->
-		<!--<Exec Command="dotnet publish -c Release ../BlazorAngularComponentGenerator.Tool/BlazorAngularComponentGenerator.Tool.csproj -p:PublishProfile=osx-x64" />-->
+		<Exec Command="$(PublishCommand) -r win-x86" />
+		<Exec Command="$(PublishCommand) -r linux-x64" />
+		<Exec Command="$(PublishCommand) -r osx-x64" />
 
-		<!-- Delete PDB files -->
+		<!-- Copy executables -->
 		<ItemGroup>
-			<PdbFiles Include="../BlazorAngularComponentGenerator.Tool/bin/Release/net6.0/publish/**/*.pdb" />
+			<ExecutableFilesSource Include="$(File_Win_x86);$(File_Linux_x64);$(File_OSX_x64)" />
+			<ExecutableFilesDestination Include="$(OutputPath)/tools/generator_win_x86.exe;$(OutputPath)/tools/generator_linux_x64;$(OutputPath)/tools/generator_osx_x64" />
 		</ItemGroup>
 
-		<Delete Files="@(PdbFiles)" />
-
-		<!-- Copy everything else -->
-		<ItemGroup>
-			<FilesToCopy Include="../BlazorAngularComponentGenerator.Tool/bin/Release/net6.0/publish/**/*.*" />
-		</ItemGroup>
-
-		<Copy SourceFiles="@(FilesToCopy)" DestinationFolder="$(OutputPath)/tools/%(RecursiveDir)" />
+		<Copy SourceFiles="@(ExecutableFilesSource)" DestinationFiles="@(ExecutableFilesDestination)" />
 	</Target>
 
 	<Target Name="CopyGeneratorTargets" AfterTargets="Build">
+		<!-- Copy build targets -->
 		<ItemGroup>
-			<TargetFileToCopy Include="../BlazorAngularComponentGenerator.MSBuild/build/netstandard2.0/*.*" />
+			<BuildTargetsSource Include="../BlazorAngularComponentGenerator.MSBuild/build/netstandard2.0/BlazorAngularComponentGenerator.MSBuild.targets" />
+			<!-- Intentionally renaming the targets file to match the nuget package -->
+			<BuildTargetsDestination Include="$(OutputPath)/build/netstandard2.0/BlazorAngularComponentGenerator.targets" />
 		</ItemGroup>
 
-		<Copy SourceFiles="@(TargetFileToCopy)" DestinationFolder="$(OutputPath)/build/netstandard2.0" />
+		<Copy SourceFiles="@(BuildTargetsSource)" DestinationFiles="@(BuildTargetsDestination)" />
 	</Target>
 </Project>
