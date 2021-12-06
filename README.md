@@ -1,6 +1,5 @@
-[![Nuget](https://img.shields.io/nuget/v/BlazorAngularComponentGenerator?style=flat-square)](https://www.nuget.org/packages/BlazorAngularComponentGenerator/)
-
 # BlazorAngularComponentGenerator
+[![Nuget](https://img.shields.io/nuget/v/BlazorAngularComponentGenerator?style=flat-square)](https://www.nuget.org/packages/BlazorAngularComponentGenerator/)
 
 Generate Angular components from Blazor components.
 
