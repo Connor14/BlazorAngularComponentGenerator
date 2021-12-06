@@ -113,6 +113,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 })
 export class AppModule { }
 ```
+* Add your components to your HTML templates
 * Run your Angular application
 
 ### Additional Enhancements
