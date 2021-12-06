@@ -116,6 +116,26 @@ export class AppModule { }
 ```
 * Run your Angular application
 
+### Additional Enhancements
+
+Now that your projects are running, you can take things a step further.
+
+As an example, you can modify your Blazor application's `csproj` file to automatically copy the generated Angular components to your Angular app. Place the following at the bottom of the `Project` section. This sample is taken from [BlazorApp/BlazorApp.csproj](BlazorApp/BlazorApp.csproj).
+
+```XML
+<!-- Copy the generated Angular components to the Angular project -->
+<ItemGroup>
+  <JavaScriptComponents Include="$(OutputPath)/js/**/*.*"/>
+</ItemGroup>
+
+<Target Name="CopyJavaScriptComponents"
+    AfterTargets="Build">
+  <Copy
+    SourceFiles="@(JavaScriptComponents)"
+    DestinationFiles="@(JavaScriptComponents->'../angular-app-with-blazor/src/app/components/%(RecursiveDir)%(Filename)%(Extension)')" />
+</Target>
+```
+
 ## Building the NuGet package
 
 * Navigate to the `BlazorAngularComponentGenerator` directory
