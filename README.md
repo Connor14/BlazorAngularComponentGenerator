@@ -17,7 +17,7 @@ _Note that the demo does **not** use the NuGet package_
 * Start `BlazorApp` using `dotnet watch`
 * Start `angular-app-with-blazor` using `npm start`
 * Navigate to the Angular app at `http://localhost:4200`
-* Open the browser's dev tools and wait for `blazor.webassembly.js` to load
+* Wait for the components to load
 * Interact with the app!
 
 ## Getting Started
