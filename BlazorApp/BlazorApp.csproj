@@ -24,7 +24,7 @@
 	</ItemGroup>
 
 	<Target Name="CopyJavaScriptComponents"
-			AfterTargets="AfterBuild">
+			AfterTargets="Build">
 		<Copy
 			SourceFiles="@(JavaScriptComponents)"
 			DestinationFiles="@(JavaScriptComponents->'../angular-app-with-blazor/src/app/components/%(RecursiveDir)%(Filename)%(Extension)')" />

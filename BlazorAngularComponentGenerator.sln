@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAngularComponentGener
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "angular-app-with-blazor", "angular-app-with-blazor\angular-app-with-blazor.esproj", "{9BA3AB2A-0292-4B71-9B4C-C07EE6C73F73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAngularComponentGenerator.MSBuild", "BlazorAngularComponentGenerator.MSBuild\BlazorAngularComponentGenerator.MSBuild.csproj", "{2229D4CD-26DD-4973-8D56-0D2BCFD27048}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAngularComponentGenerator.MSBuild", "BlazorAngularComponentGenerator.MSBuild\BlazorAngularComponentGenerator.MSBuild.csproj", "{2229D4CD-26DD-4973-8D56-0D2BCFD27048}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

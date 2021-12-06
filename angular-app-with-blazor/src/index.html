@@ -10,7 +10,19 @@
 <body>
   <app-root></app-root>
 
-  <!-- ADD FRAMEWORK REFERENCE -->
+  <script>
+    let resolveBlazorReadyPromise = null;
+
+    // The Promise that will resolve when Blazor is ready for custom components
+    BlazorReadyPromise = new Promise(function (resolve, reject) {
+      resolveBlazorReadyPromise = resolve;
+    });
+
+    // The JavaScriptInitializer function that will run for each component when Blazor is ready for that component
+    window.initializeBlazorComponent = function (component, params) {
+      resolveBlazorReadyPromise();
+    };
+  </script>
   <script src="_framework/blazor.webassembly.js"></script>
 </body>
 </html>

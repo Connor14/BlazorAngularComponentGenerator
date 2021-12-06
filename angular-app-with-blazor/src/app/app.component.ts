@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-app-with-blazor';
+  greetingText = 'Welcome to angular-app-with-blazor!';
 
   blazorCounters: any[] = [];
   nextCounterIndex = 1;

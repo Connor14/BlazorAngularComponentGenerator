@@ -2,12 +2,14 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { GreetingComponent } from './components/greeting/greeting.component';
 import { CounterComponent } from './components/counter/counter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CounterComponent,
+    GreetingComponent,
+    CounterComponent
   ],
   imports: [
     BrowserModule

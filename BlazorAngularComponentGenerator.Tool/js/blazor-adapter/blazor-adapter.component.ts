@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 
+declare const BlazorReadyPromise: any
 declare const Blazor: any
 
 @Component({
@@ -51,10 +52,10 @@ export abstract class BlazorAdapterComponent implements OnDestroy, OnChanges {
     }
 
     this._hasPendingSetParameters = true;
-    this._addComponentPromise = Blazor.rootComponents.add(nativeElement, componentIdentifier, parameters).then((rootComponent: any) => {
+      this._addComponentPromise = BlazorReadyPromise.then(() => Blazor.rootComponents.add(nativeElement, componentIdentifier, parameters).then((rootComponent: any) => {
       this._hasPendingSetParameters = false;
       return rootComponent;
-    });
+    }));
   }
 
   private async _supplyUpdatedParameters() {
